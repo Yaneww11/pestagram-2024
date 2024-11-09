@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
-{% load simple_tag %}
-
+{% load simple_tag  static%}
 
 {% block content %}
 <main>
@@ -10,9 +9,11 @@
             <form class="searchbar" method="post">
                 <input type="text" placeholder="Search by pet name...">
                 <button>
-                    <img src="/static/images/search.png" height="18" alt="img2">
+                    <img src="{% static '/images/search.png' %}" height="18" alt="img2">
                 </button>
             </form>
+            
+            {% simple_tag_example 4 %}
             <!-- End Searchbar Form -->
             <!-- Start Pet Photos Post Section -->
             {% include 'common/pet-posts.html' %}
