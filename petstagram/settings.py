@@ -27,6 +27,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+MY_APPS = [
+    'photos',
+    'pets',
+    'accounts.apps.AccountsConfig',
+    'common.apps.CommonConfig'
+]
+
 
 # Application definition
 
@@ -37,7 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-]
+
+] + MY_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -54,7 +62,7 @@ ROOT_URLCONF = 'petstagram.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,11 +84,11 @@ WSGI_APPLICATION = 'petstagram.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'test',          # Name of the PostgreSQL database
-        'USER': 'yane',             # PostgreSQL username
-        'PASSWORD': 'password',     # Password for the PostgreSQL user
-        'HOST': 'localhost',          # Database host (localhost for local database)
-        'PORT': '5432',               # Default PostgreSQL port
+        'NAME': 'test',
+        'USER': 'yane',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -120,6 +128,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
