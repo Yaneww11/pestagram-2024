@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 
+from django.urls.base import reverse_lazy
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,7 +27,16 @@ SECRET_KEY = 'django-insecure-m(22%@vezcusw)q8^fm@2+oz5ieop&=#!k=cb@g4_n0hm-h$tv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '8887-78-83-120-239.ngrok-free.app',
+    'localhost',
+
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://8887-78-83-120-239.ngrok-free.app',
+    'https://127.0.0.1',
+]
 
 MY_APPS = [
     'photos',
@@ -84,7 +95,7 @@ WSGI_APPLICATION = 'petstagram.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'test',
+        'NAME': 'petstagram_app',
         'USER': 'yane',
         'PASSWORD': 'password',
         'HOST': 'localhost',
@@ -133,7 +144,13 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTH_USER_MODEL = 'accounts.AppUser'
+LOGIN_REDIRECT_URL = reverse_lazy('home-page')
+LOGOUT_REDIRECT_URL = reverse_lazy('login')
