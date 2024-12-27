@@ -1,14 +1,16 @@
+from django.contrib.auth import get_user_model
 from django.core.validators import MinLengthValidator
 from django.db import models
 
 from pets.models import Pet
 from photos.validators import FileSizeValidator
 
+UserModel = get_user_model()
 
 # Create your models here.
 class Photo(models.Model):
     photo = models.ImageField(
-        upload_to='media',
+        upload_to='',
         validators=[
             FileSizeValidator(5)
         ],
@@ -36,6 +38,11 @@ class Photo(models.Model):
 
     date_of_published = models.DateTimeField(
         auto_now_add=True
+    )
+
+    user = models.ForeignKey(
+        to=UserModel,
+        on_delete=models.CASCADE
     )
 
 class PhotoPet(models.Model):

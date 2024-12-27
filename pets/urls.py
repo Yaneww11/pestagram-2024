@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import path, include
 
 from pets import views
@@ -10,3 +12,4 @@ urlpatterns = [
         path('delete/', views.pet_delete_page, name='delete-pet')
     ]))
 ]
+
